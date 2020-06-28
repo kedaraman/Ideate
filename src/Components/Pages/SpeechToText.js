@@ -48,15 +48,20 @@ function SpeechToText() {
 
   }, []);
 
-  async function topicHandler() {
-    // console.log("tester" + text)
-    // await apiService.getKeyPhraseExtraction(text)
-    //   .then(res => {
-    //     console.log("egg" + res.data);
-    //     // const senti = res.data['phrases'];
-    //     // setPhrase(senti);
-    //   })
-    setPhrase(["Cars\n", "Trucks\n", "Phones\n"]);
+  async function topicHandler () {
+
+   if(textArray.length >= 2) {
+      let inputText = textArray[textArray.length - 2];
+      console.log("inputText: " + inputText);
+
+      let data = await apiService.getKeyPhraseExtraction(inputText);
+      console.log(data);
+      let phrases = await data.data.phrases;
+      console.log(phrases);
+
+      setPhrase(phrases);
+   }
+
   }
 
   async function start() {
@@ -143,7 +148,7 @@ function SpeechToText() {
         Get relevent topics
       </Button>
       <Box component="span" display="block" p={1} m={1} bgcolor="background.paper">
-        {phrase}
+        {phrase.map(txt => <p>{txt}</p>)}
       </Box>
 
 

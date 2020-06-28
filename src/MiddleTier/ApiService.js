@@ -31,10 +31,11 @@ export default class ApiService {
     //     print(text)
     //     return jsonify({'phrases' : key_phrase_extraction_example(client, text)})
     getKeyPhraseExtraction(textInput) {
+      console.log("Middle Tier Receiver: " + textInput);
       return axios.get(`/api/keyPhraseExtraction`, {
-        method: 'get',
+        method: 'GET',
         params: {
-          text: textInput
+          "text": textInput
         },
         headers: {
           "Access-Control-Allow-Origin": "*",
@@ -42,13 +43,12 @@ export default class ApiService {
           "Content-type": "application/json"
         },
       })
-      .then(function (response) {
-        console.log("This is from the middle tier")
-        console.log(response);
-        console.log("This is from the middle tier")
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      // .then(function (response) {
+      //   console.log("Middle Tier Network response: ");
+      //   console.log(response);
+      // })
+      // .catch(function (error) {
+      //   console.log(error);
+      // });
     }
 }
