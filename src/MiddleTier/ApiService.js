@@ -23,13 +23,6 @@ export default class ApiService {
         return axios.get(`/api/something/${A}/somethingElse/${B}`)
     }
 
-    // @app.route('/api/keyPhraseExtraction', methods=['POST', 'GET'])
-    // def keyPhraseExtraction():
-    //   error = None
-    //   if request.method == 'POST':
-    //     text = request.args.get('text', '')
-    //     print(text)
-    //     return jsonify({'phrases' : key_phrase_extraction_example(client, text)})
     getKeyPhraseExtraction(textInput) {
       console.log("Middle Tier Receiver: " + textInput);
       return axios.get(`/api/keyPhraseExtraction`, {
@@ -43,12 +36,31 @@ export default class ApiService {
           "Content-type": "application/json"
         },
       })
-      // .then(function (response) {
-      //   console.log("Middle Tier Network response: ");
-      //   console.log(response);
-      // })
-      // .catch(function (error) {
-      //   console.log(error);
-      // });
     }
+
+    // @app.route('/api/relatedSearch', methods=['POST', 'GET'])
+    // def relatedSearch():
+    //   error = None
+    //   if request.method == 'GET':
+    //     text = request.args.get('text', '')
+    //     print(text)
+    //     api = BingClient()
+    //     result = api.get_similar_results(text)
+    //     print(result)
+    //     return jsonify({'related' : result})
+    getRelatedSearch(textInput) {
+      console.log("Middle Tier Receiver: " + textInput);
+      return axios.get(`/api/relatedSearch`, {
+        method: 'GET',
+        params: {
+          "text": textInput
+        },
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+          "Content-type": "application/json"
+        },
+      })
+    }    
+
 }

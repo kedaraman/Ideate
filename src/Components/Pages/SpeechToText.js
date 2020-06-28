@@ -21,6 +21,8 @@ function SpeechToText() {
 
   const [phrase, setPhrase] = useState([]);
 
+  const [bingRes, setBingRes] = useState([])
+
   let textArrayGlobal = [];
 
   const [textArray, setTextArray] = useState([]);
@@ -56,13 +58,23 @@ function SpeechToText() {
 
       let data = await apiService.getKeyPhraseExtraction(inputText);
       console.log(data);
-      let phrases = await data.data.phrases;
+      let phrases = data.data.phrases;
       console.log(phrases);
 
       setPhrase(phrases);
+
+      // use phrases for bing results
+      let joinedData = phrases.join(' ');
+      let bingData = await apiService.getRelatedSearch(joinedData);
+      console.log("ffff")
+      console.log(bingData);
+
+      let bingPhrases = bingData.data.related;
+      setBingRes(bingPhrases);
    }
 
   }
+ 
 
   async function start() {
 
@@ -144,10 +156,21 @@ function SpeechToText() {
       <br/>
       <br/>
       <Button variant="contained" color="secondary" onClick={topicHandler}>
-        Get relevent topics
+        Get Topics
       </Button>
+      <h1>
+        Topics you talked about
+      </h1>
       <Box component="span" display="block" p={1} m={1} bgcolor="background.paper">
         {phrase.map(txt => <p>{txt}</p>)}
+      </Box>
+
+      <Divider/>
+      <h1>
+        Topics we suggest
+      </h1>
+      <Box component="span" display="block" p={1} m={1} bgcolor="background.paper">
+        {bingRes.map(txt => <p>{txt}</p>)}
       </Box>
 
 

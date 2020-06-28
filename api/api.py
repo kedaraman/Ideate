@@ -35,7 +35,7 @@ def keyPhraseExtraction():
     print(text)
     return jsonify({'phrases' : key_phrase_extraction_example(client, text)})
 
-@app.route('/api/relatedSearch', methods=['POST', 'GET'])
+@app.route('/api/relatedSearch', methods=['GET'])
 def relatedSearch():
   error = None
   if request.method == 'GET':
