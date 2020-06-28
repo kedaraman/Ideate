@@ -7,6 +7,9 @@ import {
   SpeechRecognizer,
 } from "microsoft-cognitiveservices-speech-sdk";
 
+let recognizer;
+let speechConfig;
+
 function SpeechToText() {
   const [startDisabled, setStartDisabled] = useState(false);
   const [stopDisabled, setStopDisabled] = useState(true);
@@ -16,10 +19,6 @@ function SpeechToText() {
   var subscriptionKey = "048a3354573941f596e31660a227212d"; //MOVE THIS TO ENV
   var serviceRegion = "westus2";
 
-  var speechSDK;
-
-  var recognizer;
-  var speechConfig;
   //End of Params necc for Azure Speech to Text
 
   //This UseEffect needs to run once after the DOM Content is Loaded (DOMContentLoaded event in JS)
@@ -40,13 +39,6 @@ function SpeechToText() {
     subscriptionKey = "048a3354573941f596e31660a227212d";
     serviceRegion = "westus2";
 
-    // return () => {
-    //   document.body.removeChild(script);
-    // };
-  }, []);
-
-  const start = () => {
-    //window.alert("START");
     speechConfig = SpeechConfig.fromSubscription(
       subscriptionKey,
       serviceRegion
@@ -54,6 +46,14 @@ function SpeechToText() {
     speechConfig.speechRecognitionLanguage = "en-US"; //MAKE CONVERSATIONALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
     var audioConfig = AudioConfig.fromDefaultMicrophoneInput();
     recognizer = new SpeechRecognizer(speechConfig, audioConfig);
+
+    // return () => {
+    //   document.body.removeChild(script);
+    // };
+  }, []);
+
+  const start = () => {
+    //window.alert("START");
 
     recognizer.recognized = (s, e) => {
       console.log(" Recognized: " + e.result.text);
@@ -75,19 +75,25 @@ function SpeechToText() {
     setStopDisabled(false);
   };
 
-  const stop = () => {
-    window.alert("STOP");
-    recognizer.stopContinuousRecognitionAsync(
-      () => {
-        console.log("Stopping Recording");
-      },
-      (error) => {
-        console.log("ERROR stopping: " + error);
-      }
-    );
-    setStartDisabled(false);
-    setStopDisabled(true);
-  };
+  async function stop() {
+    try {
+
+      window.alert("STOP");
+      recognizer.stopContinuousRecognitionAsync(
+        () => {
+          console.log("Stopping Recording");
+        },
+        (error) => {
+          console.log("ERROR stopping: " + error);
+        }
+      );
+      setStartDisabled(false);
+      setStopDisabled(true);
+    }
+    catch (err) {
+      console.error(err);
+    }
+  }
 
   return (
     <div className="outerContainer">
