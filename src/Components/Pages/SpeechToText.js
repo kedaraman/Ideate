@@ -76,7 +76,6 @@ function SpeechToText() {
       textArrayGlobal.push(e.result.text);
       console.log(textArrayGlobal);
       setTextArray(textArrayGlobal);
-      // prior good
     };
 
     recognizer.recognizing = (s, e) => {
