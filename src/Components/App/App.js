@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ApiService from '../../MiddleTier/ApiService';
 import logo from '../../logo.svg';
 import msLogo from '../../assets/microsoft_logo.png'
+import SpeechToText from '../Pages/SpeechToText'
 import './App.css';
 
 const apiService = new ApiService();
@@ -56,6 +57,7 @@ function App() {
         >
           What's this
         </a>
+        <SpeechToText/>
         <p>The current time is {currentTime}</p>
         <p>The baseline message is {currentMessage}</p>
       </header>
