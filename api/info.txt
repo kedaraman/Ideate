@@ -1,0 +1,15 @@
+Application name: hack4good-2f807
+Application settings (stored as environmental variables on server):
+  COGSVCS_CLIENTURL: https://westus2.api.cognitive.microsoft.com/
+  COGSVCS_KEY: dc0e15f145374dc3b41976d2c4b52f55
+Deployment info:
+  Git url: https://hack4good-2f807.scm.azurewebsites.net/hack4good-2f807.git
+  User name: $hack4good-2f807
+  User password: PL9rb3ceaQ8gaRj9kHabomvh1QNHZFnD8uXXmL9h8BeiqjfohsjTeHJA7ysi
+Deployment steps:
+  1- Create git repository: git init
+  2- Add all code: git add .
+  3- Commit code: git commit -m 'Initial commit'
+  4- Add remote to git: git remote add azure https://hack4good-2f807.scm.azurewebsites.net/hack4good-2f807.git
+  5- Deploy to Azure: git push -u azure master
+Website url: https://hack4good-2f807.azurewebsites.net
