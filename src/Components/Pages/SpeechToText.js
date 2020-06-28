@@ -61,16 +61,19 @@ function SpeechToText() {
       let phrases = data.data.phrases;
       console.log(phrases);
 
-      setPhrase(phrases);
+      if(phrases) {
+        setPhrase(phrases);
 
-      // use phrases for bing results
-      let joinedData = phrases.join(' ');
-      let bingData = await apiService.getRelatedSearch(joinedData);
-      console.log("ffff")
-      console.log(bingData);
+        // use phrases for bing results
+        let joinedData = phrases.join(' ');
+        let bingData = await apiService.getRelatedSearch(joinedData);
+        console.log("ffff")
+        console.log(bingData);
+  
+        let bingPhrases = bingData.data.related;
+        setBingRes(bingPhrases);
+      }
 
-      let bingPhrases = bingData.data.related;
-      setBingRes(bingPhrases);
    }
 
   }
