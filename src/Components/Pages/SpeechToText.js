@@ -81,6 +81,8 @@ function SpeechToText() {
     try {
       
     setTextArray([]);
+    setPhrase([]);
+    setBingRes([]);
 
     recognizer.recognized = (s, e) => {
       console.log(" Recognized: " + e.result.text);
