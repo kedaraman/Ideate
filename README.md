@@ -24,7 +24,7 @@ requirements.txt is where all Flask dependencies are located.
 
 ## Starting the Frontend
 
-## yarn install
+### yarn install
 
 This will refer to package.json and install all React frontend dependencies. Do this before proceeding.
 
