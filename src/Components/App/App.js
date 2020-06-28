@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import ApiService from '../../MiddleTier/ApiService';
 import logo from '../../logo.svg';
 import msLogo from '../../assets/microsoft_logo.png'
-import SpeechToText from '../Pages/SpeechToText'
+import SpeechToText from '../Pages/SpeechToText';
+import LandingPage from '../Pages/LandingPage';
 import './App.css';
 
 const apiService = new ApiService();
@@ -44,7 +45,8 @@ function App() {
   
   return (
     <div className="App">
-      <header className="App-header">
+      <LandingPage />
+      {/* <header className="App-header">
         <img src={msLogo} className="App-logo" alt="logo" />
         <p>
           Wow look a spinning Microsoft logo
@@ -60,7 +62,7 @@ function App() {
         <SpeechToText/>
         <p>The current time is {currentTime}</p>
         <p>The baseline message is {currentMessage}</p>
-      </header>
+      </header> */}
     </div>
   );
 }
