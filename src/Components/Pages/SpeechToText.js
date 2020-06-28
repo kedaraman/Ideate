@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ApiService from '../../MiddleTier/ApiService';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 // import { TextField } from "material-ui/core";
@@ -12,9 +13,13 @@ import {
 let recognizer;
 let speechConfig;
 
+const apiService = new ApiService();
+
 function SpeechToText() {
   const [startDisabled, setStartDisabled] = useState(false);
   const [stopDisabled, setStopDisabled] = useState(true);
+
+  const [phrase, setPhrase] = useState([]);
 
   let textArrayGlobal = [];
 
@@ -43,8 +48,21 @@ function SpeechToText() {
 
   }, []);
 
-  const start = () => {
+  async function topicHandler() {
+    // console.log("tester" + text)
+    // await apiService.getKeyPhraseExtraction(text)
+    //   .then(res => {
+    //     console.log("egg" + res.data);
+    //     // const senti = res.data['phrases'];
+    //     // setPhrase(senti);
+    //   })
+    setPhrase(["Cars\n", "Trucks\n", "Phones\n"]);
+  }
 
+  async function start() {
+
+    try {
+      
     setTextArray([]);
 
     recognizer.recognized = (s, e) => {
@@ -53,6 +71,7 @@ function SpeechToText() {
       textArrayGlobal.push(e.result.text);
       console.log(textArrayGlobal);
       setTextArray(textArrayGlobal);
+      // prior good
     };
 
     recognizer.recognizing = (s, e) => {
@@ -67,8 +86,17 @@ function SpeechToText() {
         console.log("ERROR starting: " + error);
       }
     );
+    
+
     setStartDisabled(true);
     setStopDisabled(false);
+
+    }
+
+    catch (err) {
+      console.error(err);
+    }
+
   };
 
   async function stop() {
@@ -109,12 +137,25 @@ function SpeechToText() {
       </Box>
 
       <Divider/>
+      <br/>
+      <br/>
+      <Button variant="contained" color="secondary" onClick={topicHandler}>
+        Get relevent topics
+      </Button>
+      <Box component="span" display="block" p={1} m={1} bgcolor="background.paper">
+        {phrase}
+      </Box>
+
+
+      <Divider/>
       <h1>
         Transcript
       </h1>
       <Box component="span" display="block" p={1} m={1} bgcolor="background.paper">
         {textArray.map(txt => <p>{txt}</p>)}
       </Box>
+
+
     </div>
   );
 }

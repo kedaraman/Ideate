@@ -112,10 +112,10 @@ export default function LandingPage() {
             </div>
           </Container>
         </div>
-        <Container className={classes.cardGrid} maxWidth="md">
+        {/* <Container className={classes.cardGrid} maxWidth="md"> */}
           {/* End hero unit */}
           {/* Use the cards to display flow of tools used */}
-          <Grid container spacing={4}>
+          {/* <Grid container spacing={4}>
             {cards.map((card) => (
               <Grid item key={card} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
@@ -143,8 +143,8 @@ export default function LandingPage() {
                 </Card>
               </Grid>
             ))}
-          </Grid>
-        </Container>
+          </Grid> */}
+        {/* </Container> */}
       </main>
       {/* Footer */}
       <footer className={classes.footer}>

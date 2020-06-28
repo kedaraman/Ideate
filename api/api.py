@@ -14,7 +14,6 @@ key = '54a49a7ce91a4e47a5699065823a71ef'
 endpoint = 'https://txtan.cognitiveservices.azure.com/'
 
 
-
 @app.route('/')
 def get_hello_world():
   return jsonify({'message': 'Hello World!'})
@@ -28,10 +27,10 @@ def get_current_time():
   #dictionary will be automatically turned into JSON on return
   return jsonify({'time': time.time()})
 
-@app.route('/api/keyPhraseExtraction', methods=['POST', 'GET'])
+@app.route('/api/keyPhraseExtraction', methods=['GET'])
 def keyPhraseExtraction():
   error = None
-  if request.method == 'POST':
+  if request.method == 'GET':
     text = request.args.get('text', '')
     print(text)
     return jsonify({'phrases' : key_phrase_extraction_example(client, text)})
@@ -39,7 +38,7 @@ def keyPhraseExtraction():
 @app.route('/api/relatedSearch', methods=['POST', 'GET'])
 def relatedSearch():
   error = None
-  if request.method == 'POST':
+  if request.method == 'GET':
     text = request.args.get('text', '')
     print(text)
     api = BingClient()

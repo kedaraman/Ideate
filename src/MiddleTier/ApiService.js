@@ -22,4 +22,33 @@ export default class ApiService {
     getAB(A, B) {
         return axios.get(`/api/something/${A}/somethingElse/${B}`)
     }
+
+    // @app.route('/api/keyPhraseExtraction', methods=['POST', 'GET'])
+    // def keyPhraseExtraction():
+    //   error = None
+    //   if request.method == 'POST':
+    //     text = request.args.get('text', '')
+    //     print(text)
+    //     return jsonify({'phrases' : key_phrase_extraction_example(client, text)})
+    getKeyPhraseExtraction(textInput) {
+      return axios.get(`/api/keyPhraseExtraction`, {
+        method: 'get',
+        params: {
+          text: textInput
+        },
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+          "Content-type": "application/json"
+        },
+      })
+      .then(function (response) {
+        console.log("This is from the middle tier")
+        console.log(response);
+        console.log("This is from the middle tier")
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
 }
