@@ -160,14 +160,14 @@
             );
           }
 
-          speechConfig.speechRecognitionLanguage = "en-US";
+          speechConfig.speechRecognitionLanguage = "en-US"; //MAKE CONVERSATIONALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
           var audioConfig = SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
           recognizer = new SpeechSDK.SpeechRecognizer(
             speechConfig,
             audioConfig
           );
 
-          recognizer.recognizeOnceAsync(
+          recognizer.startContinuousRecognitionAsync(
             function (result) {
               startRecognizeOnceAsyncButton.disabled = false;
               phraseDiv.innerHTML += result.text;
