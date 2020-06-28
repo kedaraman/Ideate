@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import ApiService from '../../MiddleTier/ApiService';
-import logo from '../../logo.svg';
-import msLogo from '../../assets/microsoft_logo.png'
-import './App.css';
+import React, { useState, useEffect } from "react";
+import ApiService from "../../MiddleTier/ApiService";
+import logo from "../../logo.svg";
+import msLogo from "../../assets/microsoft_logo.png";
+import "./App.css";
+import Home from "../../Pages/Home.js";
+import { Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
+import SpeechToText from "../SpeechToText.js";
 
 const apiService = new ApiService();
 
@@ -14,40 +18,44 @@ function App() {
   const [messageError, setMessageError] = useState(null);
 
   useEffect(() => {
-    apiService.getTime()
-      .then(res => {
+    apiService
+      .getTime()
+      .then((res) => {
         const data = res.data;
-        const time = data['time']
+        const time = data["time"];
         setCurrentTime(time);
         console.log(currentTime);
       })
-      .catch(error => {
+      .catch((error) => {
         setTimeError(error);
         console.log(timeError);
-      })
+      });
   }, []);
 
   useEffect(() => {
-    apiService.getBase()
-      .then(res => {
+    apiService
+      .getBase()
+      .then((res) => {
         const data = res.data;
-        console.log(data)
-        const message = data['message']
+        console.log(data);
+        const message = data["message"];
         setCurrentMessage(message);
       })
-      .catch(error => {
+      .catch((error) => {
         setMessageError(error);
         setMessageError(messageError);
-      })
+      });
   }, []);
-  
+
   return (
     <div className="App">
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/homepage" component={Home} />
+      </Switch>
       <header className="App-header">
         <img src={msLogo} className="App-logo" alt="logo" />
-        <p>
-          Wow look a spinning Microsoft logo
-        </p>
+        <p>Wow look a spinning Microsoft logo</p>
         <a
           className="App-link"
           href="https://www.youtube.com/watch?v=oHg5SJYRHA0"
@@ -56,6 +64,10 @@ function App() {
         >
           What's this
         </a>
+        <Link id="linkToHome" to="/homepage">
+          Take me Home
+        </Link>
+        <SpeechToText />
         <p>The current time is {currentTime}</p>
         <p>The baseline message is {currentMessage}</p>
       </header>
