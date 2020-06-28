@@ -21,7 +21,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Created © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="https://careers.microsoft.com/students/us/en/usuniversityinternship">
         Microsoft Intern Program
       </Link>{' '}
       {new Date().getFullYear()}
