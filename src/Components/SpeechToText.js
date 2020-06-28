@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 // import { TextField } from "material-ui/core";
-import SpeechSDK from "microsoft-cognitiveservices-speech-sdk";
+import {
+  SpeechConfig,
+  AudioConfig,
+  SpeechRecognizer,
+} from "microsoft-cognitiveservices-speech-sdk";
 
 function SpeechToText() {
   const [startDisabled, setStartDisabled] = useState(false);
@@ -32,7 +36,7 @@ function SpeechToText() {
     // if (!!window.SpeechSDK) {
     //   SpeechSDK = window.SpeechSDK;
     // }
-    speechSDK = new SpeechSDK();
+    //speechSDK = new ClientSDK();
     subscriptionKey = "048a3354573941f596e31660a227212d";
     serviceRegion = "westus2";
 
@@ -43,13 +47,13 @@ function SpeechToText() {
 
   const start = () => {
     //window.alert("START");
-    speechConfig = speechSDK.SpeechConfig.fromSubscription(
+    speechConfig = SpeechConfig.fromSubscription(
       subscriptionKey,
       serviceRegion
     );
     speechConfig.speechRecognitionLanguage = "en-US"; //MAKE CONVERSATIONALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
-    var audioConfig = speechSDK.AudioConfig.fromDefaultMicrophoneInput();
-    recognizer = new speechSDK.SpeechRecognizer(speechConfig, audioConfig);
+    var audioConfig = AudioConfig.fromDefaultMicrophoneInput();
+    recognizer = new SpeechRecognizer(speechConfig, audioConfig);
 
     recognizer.recognized = (s, e) => {
       console.log(" Recognized: " + e.result.text);
