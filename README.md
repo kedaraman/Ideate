@@ -1,4 +1,4 @@
-#Ideate
+# Ideate
 
 This application was developed for the Microsoft Cloud+AI Hack for Social Good 2020.
 
