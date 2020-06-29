@@ -1,3 +1,39 @@
+# Microsoft Ideate
+
+Developers: Jacob Stokes, James WoMa, Daniel Huang, Kedar Raman
+
+Link to Demo: https://www.youtube.com/watch?v=I01oIoW4xsQ&feature=youtu.be
+Working Prototype: https://ideate-b4030.firebaseapp.com/
+
+## Project Description
+
+During the current global pandemic, many people, from kids to adults, have been experiencing an increased sense of isolation, due to the prolonged period away from daily social interactions at school, in the workplace, and in other communal spaces. As a result, a hidden outcome of the pandemic is the insidious creep of social isolation, which has detrimental effects on mental and emotional health. Therefore, our project aims to alleviate this strain by allowing users to foster stronger connections within their existing social circles.
+
+Specifically, we notice that many conversations happening virtually, e.g. through video chat or phone call, often peter out as the participants may run out of topics to discuss. Therefore, our project is an aid to listen in on the conversation and suggest fresh discussion topics that are a natural segue from the existing conversation. Therefore, we hope to prolong the conversation and help foster a stronger social connection between the participants.
+
+### Inspiration
+
+We've all had that awkward situation where no one knows what to say, everyone talks over each other, and there's just way too many...pauses. Now image not talking to a friend on Xbox or Teams for months because of quarantine. Because of social isolation, you don't know what to say to your friend and the conversation gets cut short. From this, you're unlikely to feel as comfortable reconnecting and you go back to being isolated.
+Microsoft Ideate solves this issue using the power of Azure and Bing to provide a full transcript of your conversation, a list of talked about topics, the most current idea spoken, and even conversation topic suggestions using machine learning. Now, you're not alone - even when you're the only one home!
+
+### How Ideate was Built
+
+Our Pipeline is as follows:
+The aid will listen in on the conversation and collect a sound recording to capture the conversation
+We use Azure Speech to Text to convert the conversation sound recording to text
+We use Azure Text Analytics to extract the topical key phrases from the conversation text
+We feed the key phrases to the Bing Web Search API to find similar topics, which we propose to the conversation participants
+
+Our Stack is as follows:
+Backend: Python Flask
+Frontend/Middle Tier: React.js/JavaScript
+Frontend Frameworks: Material UI
+Package Manager: yarn/npm
+API Services: Azure Services, refer to pipeline above
+Deployment: Firebase
+
+# Getting Started
+
 ## Starting the Backend
 
 Note: the non-default yarn scripts can be found in package.json
