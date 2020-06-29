@@ -3,6 +3,7 @@
 Developers: Jacob Stokes, James WoMa, Daniel Huang, Kedar Raman
 
 Link to Demo: https://www.youtube.com/watch?v=I01oIoW4xsQ&feature=youtu.be
+
 Working Prototype: https://ideate-b4030.firebaseapp.com/
 
 ## Project Description
