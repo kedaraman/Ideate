@@ -26,11 +26,17 @@ We use Azure Text Analytics to extract the topical key phrases from the conversa
 We feed the key phrases to the Bing Web Search API to find similar topics, which we propose to the conversation participants
 
 Our Stack is as follows:
-Backend: Python Flask
+
+Backend: Python/Flask
+
 Frontend/Middle Tier: React.js/JavaScript
+
 Frontend Frameworks: Material UI
+
 Package Manager: yarn/npm
+
 API Services: Azure Services, refer to pipeline above
+
 Deployment: Firebase
 
 # Getting Started
